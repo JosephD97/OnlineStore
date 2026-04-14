@@ -3,6 +3,7 @@ from typing import Dict
 from ..repositories.product_repository import ProductRepository
 from ..schemas.cart import CartResponse, CartItem, CartItemCreate, CartItemUpdate
 from fastapi import HTTPException, status
+from decimal import Decimal
 
 
 class CartService:
@@ -54,7 +55,7 @@ class CartService:
         products_dict = {product.id: product for product in products}
 
         cart_items = []
-        total_price = 0.0
+        total_price = Decimal("0.0")
         total_items = 0
 
         for product_id, quantity in cart_data.items():
